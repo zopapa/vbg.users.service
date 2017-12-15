@@ -57,6 +57,27 @@ public class UserController {
 
         return token;
     }
+
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/{login}/{password}")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "login", notes = "login")
+    public ResponseEntity<Boolean> checkUser(@PathVariable(name="login") String login, @PathVariable(name="password") String password) throws SQLException {
+
+        HttpStatus httpStatus = null;
+        boolean isUser = false;
+        
+        try {
+            isUser = userService.checkUser(login, password);
+            httpStatus = HttpStatus.OK;
+        }catch (SQLException exception){
+            
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<>(isUser, httpStatus);
+    }
+
         //  THOSES METHODES ARE USELESS FOR THE MOMENT BY THEY WORK 
 
     @RequestMapping(method = RequestMethod.PUT)

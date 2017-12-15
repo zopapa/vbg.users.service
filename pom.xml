@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <docker.image.prefix>pagSecurityImage</docker.image.prefix>
+        <config.home>/home/vbg.config/dev</config.home>
     </properties>
 
     <dependencies>
@@ -24,12 +25,12 @@
             <version>6.11</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+  <!--      <dependency>
             <groupId>com.bootcamp</groupId>
             <artifactId>security</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
+-->
         <dependency>
             <groupId>com.bootcamp</groupId>
             <artifactId>commons</artifactId>
@@ -196,7 +197,7 @@
                         <filtering>true</filtering>
                     </resource>
                     <resource>
-                        <directory>src/main/resources/local</directory>
+                        <directory>${config.home}</directory>
                     </resource>
 
                 </resources>
@@ -213,7 +214,7 @@
                         <filtering>true</filtering>
                     </resource>
                     <resource>
-                        <directory>src/main/resources/dev</directory>
+                        <directory>${config.home}</directory>
                     </resource>
 
                 </resources>

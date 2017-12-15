@@ -85,7 +85,23 @@ public class UserService implements DatabaseConstants{
         List<User> users = UserCRUD.read();
 
 
+
         return users;
     }
+
+    public boolean checkUser(String login, String password) throws SQLException {
+        boolean isUser;
+        Criterias criterias = new Criterias();
+        criterias.addCriteria(new Criteria("login", "=", login, "AND"));
+        criterias.addCriteria(new Criteria("password", "=", password));
+        
+        if (UserCRUD.read(criterias).isEmpty()){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 
 }
